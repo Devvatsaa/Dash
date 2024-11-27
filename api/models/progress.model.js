@@ -1,34 +1,49 @@
-
 import mongoose from "mongoose";
 
-const progressCardSchema = new mongoose.Schema(
+const liveTestSchema = new mongoose.Schema(
   {
-    title: {
+    examType: {
       type: String,
-      required: true, // Make this field mandatory
-      trim: true, // Removes extra spaces from input
+      required: true, 
+      trim: true,
     },
-    description: {
+    courseTitle: {
       type: String,
       required: true,
       trim: true,
     },
-    progress: {
-      type: Number,
-      required: true,
-      min: 0, // Ensure progress is not below 0
-      max: 100, // Ensure progress is not above 100
+    liveStatus: {
+      type: String,
+      default: null, 
+      trim: true,
     },
-    imageUrl: {
+    details: {
+      type: [String], 
+      required: true,
+      validate: [arrayLimit, "{PATH} exceeds the limit of 4"], 
+    },
+    syllabusLink: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    syllabusDecs: {
       type: String,
       trim: true,
     },
+    
   },
   {
-    timestamps: true, // Automatically adds `createdAt` and `updatedAt` fields
+    timestamps: true, 
   }
 );
 
-const ProgressCard = mongoose.model("ProgressCard", progressCardSchema);
 
-export default ProgressCard;
+function arrayLimit(val) {
+  return val.length <= 4;
+}
+
+
+const LiveTest = mongoose.model("LiveTest", liveTestSchema);
+
+export default LiveTest;
