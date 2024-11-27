@@ -38,13 +38,13 @@ const cards = [
 export default function Home() {
   const [activeTab, setActiveTab] = useState("all");
   return (
-    <div className="  bg-gray-100 ">
+    <div className="  bg-gray-100 min-h-[100vh]">
       {/* Static Sidebar */}
       <div className="flex h-screen fixed">
         <Sidebar />
       </div>
       <div className="flex justify-center bg-gray-100 ml-20 overflow-y-auto scrollbar-hide">
-        <div className="flex flex-col gap-4 mt-12">
+        <div className="flex flex-col gap-4 mt-12 md:w-[70%] w-[90%]">
           <Nav activeTab={activeTab} setActiveTab={setActiveTab} />
           <div className="rounded-xl bg-white">
             <TopButton />

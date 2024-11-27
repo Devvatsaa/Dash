@@ -13,7 +13,7 @@ const TapButton: React.FC = () => {
   ];
 
   return (
-    <div className="flex gap-4 overflow-x-auto scrollbar-hide p-4 bg-white rounded-lg border-b-2">
+    <div className="flex flex-col md:flex-row item-center gap-4 overflow-x-auto scrollbar-hide p-4 bg-white rounded-lg border-b-2">
       {tabs.map((tab, index) => (
         <button
           key={index}

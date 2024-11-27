@@ -17,11 +17,11 @@ const Nav: React.FC<NavBarProps> = ({ activeTab, setActiveTab }) => {
   return (
     <div className=" bg-gray-100 rounded-lg">
       {/* Top Row */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-3">
+      <div className="flex items-center justify-between mb-4 gap-3">
         {/* Back Button and Title */}
         <div className="flex items-center gap-2">
           <FiArrowLeft className="text-lg cursor-pointer" />
-          <h1 className="md:text-lg text-[18px] font-semibold ">GATE XE</h1>
+          <h1 className="md:text-lg text-[18px] font-semibold text-black">GATE XE</h1>
         </div>
 
         {/* Category Buttons */}
@@ -36,7 +36,7 @@ const Nav: React.FC<NavBarProps> = ({ activeTab, setActiveTab }) => {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-4 overflow-x-auto scrollbar-hide bg-white p-3 rounded-xl">
+      <div className="flex md:flex-row flex-col items-center gap-4 overflow-x-auto scrollbar-hide bg-white p-3 rounded-xl">
         {tabs.map((tab) => (
           <div
             key={tab.key}

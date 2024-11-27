@@ -36,9 +36,9 @@ const Card: React.FC<CardProps> = ({
   ];
   const [openBar,setOpenBar]=useState(false)
   return (
-    <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-md">
+    <div className="md:p-4 p-3 bg-gray-50 border border-gray-200 rounded-lg shadow-md">
       {/* Header Section */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row gap-4 justify-between ">
         <div>
           <span className="px-3 py-2 text-sm font-medium bg-purple-700 text-white rounded-full">
             {examType}
@@ -54,7 +54,7 @@ const Card: React.FC<CardProps> = ({
             </span>
           )}
         </div>
-        <div className="flex flex-row-reverse gap-4">
+        <div className="flex md:flex-row-reverse  gap-4">
         {buttonLabel && (
          <button
          onClick={() => setOpenBar(!openBar)}
