@@ -1,16 +1,17 @@
 import express from "express";
-// import cors from "cors";
+import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-// import authRoute from "./routes/auths.js"
-// import  postsRoute from "./routes/upload.js";
-// import usersRoute from "./routes/users.js"
-// import productRoute from "./routes/upload.js"
-// import getAllroute from "./routes/getall.js"
+
+import progressRoute from "./routes/course.route.js";
+import { errorHandler } from "./middleware/error.js";
+
+
+
 const app = express();
 dotenv.config();
 app.use(express.json());
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8001;
 const connect = async () => {
   try {
     await mongoose.connect(process.env.DB);
@@ -20,27 +21,33 @@ const connect = async () => {
   }
 };
 
-// app.use(
-//   cors({
-//     origin: [
-//       "http://localhost:3000",
-//       "http://localhost:3001",
-//     ],
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+    ],
+    credentials: true,
+  })
+);
 
-// mongoose.connection.on("disconnected", () => {
-//   console.log("mongoDB disconnected!");
-// });
+mongoose.connection.on("disconnected", () => {
+  console.log("mongoDB disconnected!");
+});
 
-// app.use("/api/auth",authRoute);
-// app.use("/api/posts",postsRoute);
-// app.use("/api/users",usersRoute);
-// app.use("/api/upload",productRoute);
-// app.use("/api/products",getAllroute);
+
+app.use((req,res,next)=>{
+  console.log(`Request received: ${req.method} ${req.url}`);
+  next(); 
+});
+
+
+
+app.use("/api/progress",progressRoute);
+app.use(errorHandler);
+
 
 app.listen(port, () => {
     connect();
-    console.log("Connected to backend is 8000.");
+    console.log(`Connected to backend is ${port}.`);
 });
